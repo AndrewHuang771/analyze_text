@@ -1,3 +1,5 @@
+import json
+
 from flask import request, render_template
 from text_analyzer import app
 
@@ -7,5 +9,6 @@ def index():
 
 @app.route('/asdf')
 def index_asdf():
-    return render_template("index.html")
+    temp = json.dumps({'apple': 'cat', 'banana':'dog', 'pear':'fish'})
+    return temp
 

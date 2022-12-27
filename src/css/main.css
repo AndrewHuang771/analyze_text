@@ -1,0 +1,81 @@
+@font-face {
+    font-family: crimsonText;
+    src: url(../fonts/Crimson_Text/CrimsonText-Regular.ttf);
+}
+
+html,
+input,
+textarea {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.4;
+    background: #eee;
+}
+
+body {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+pre {
+    padding: 10px;
+    background-color: #eee;
+    white-space: pre-wrap;
+}
+
+input {
+    box-sizing: border-box;
+    font-size: 0.85em;
+    width: 100%;
+    padding: 0.5em;
+    border: 2px solid #ddd;
+    background: #fafafa;
+}
+
+input:focus {
+    outline: 0;
+    border-color: blue;
+}
+
+[data-slate-editor]>*+* {
+    margin-top: 1em;
+}
+
+.slate-container {
+    margin: auto;
+    min-width: 500px;
+    max-width: 1000px;
+    width: 35%;
+
+    margin-top: 30px;
+
+}
+
+.textbox {
+    font-family: "crimsonText";
+    font-size: 18px;
+    border-top: 1px grey solid;
+    padding-top: 20px;
+
+    max-height: 80vh;
+    overflow: auto;
+}
+
+.css-iu3fm6 {
+    margin-bottom: 0px !important;
+}
+
+.submitButton {
+    float: right;
+    font-family: "crimsonText";
+    font-size: 18px;
+    color: black;
+    transition: 0.5s;
+}
+
+.submitButton:hover {
+    cursor: pointer;
+    color: grey;
+}
