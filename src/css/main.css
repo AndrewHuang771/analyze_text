@@ -44,7 +44,7 @@ input:focus {
 }
 
 .slate-container {
-    margin: auto;
+    margin-left: 10%;
     min-width: 500px;
     max-width: 1000px;
     width: 35%;

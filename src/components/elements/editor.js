@@ -1,5 +1,3 @@
-import "../../css/main.css"
-
 import { Button, Icon, Toolbar } from '../elements/essentials'
 import { Editable, Slate, useSlate, withReact } from 'slate-react'
 import { Editor, createEditor } from 'slate'
@@ -15,50 +13,43 @@ const HOTKEYS = {
     'mod+u': 'underline',
 }
 
-let text = "";
-
-const onChange = (event) => {
-    text = event[0].children[0].text;
-}
-
-export default function Home() {
+export default function TextEditor(props) {
     const renderLeaf = useCallback(props => <Leaf {...props} />, [])
     const editor = useMemo(() => withHistory(withReact(createEditor())), [])
 
     return (
-        <div className="slate-container">
-            <Slate editor={editor} value={initialValue} onChange={onChange}>
-                <Toolbar>
-                    <MarkButton format="bold" icon="format_bold" />
-                    <MarkButton format="italic" icon="format_italic" />
-                    <MarkButton format="underline" icon="format_underlined" />
-                    <SubmitButton onClick={analyze} ></SubmitButton>
-                </Toolbar>
-                <Editable
-                    id="textbox"
-                    className="textbox"
-                    renderLeaf={renderLeaf}
-                    placeholder="Paste your story here"
-                    spellCheck
-                    autoFocus
-                    onKeyDown={event => {
-                        for (const hotkey in HOTKEYS) {
-                            if (isHotkey(hotkey, event)) {
-                                event.preventDefault()
-                                const mark = HOTKEYS[hotkey]
-                                toggleMark(editor, mark)
+        <>
+            <div className="slate-container">
+                <Slate editor={editor} value={initialValue} onChange={props.onChange}>
+                    <Toolbar>
+                        <MarkButton format="bold" icon="format_bold" />
+                        <MarkButton format="italic" icon="format_italic" />
+                        <MarkButton format="underline" icon="format_underlined" />
+                        <SubmitButton onClick={props.analyze} ></SubmitButton>
+                    </Toolbar>
+                    <Editable
+                        id="textbox"
+                        className="textbox"
+                        renderLeaf={renderLeaf}
+                        placeholder="Paste your story here"
+                        spellCheck
+                        autoFocus
+                        onKeyDown={event => {
+                            for (const hotkey in HOTKEYS) {
+                                if (isHotkey(hotkey, event)) {
+                                    event.preventDefault()
+                                    const mark = HOTKEYS[hotkey]
+                                    toggleMark(editor, mark)
+                                }
                             }
-                        }
-                    }}
-                />
-            </Slate>
-        </div>
+                        }}
+                    />
+                </Slate>
+            </div>
+        </>
     )
 }
 
-const analyze = () => {
-    console.log(text);
-}
 
 const toggleMark = (editor, format) => {
     const isActive = isMarkActive(editor, format)

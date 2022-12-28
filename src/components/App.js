@@ -1,15 +1,15 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import TextApp from './pages/TextApp';
 import { createRoot } from 'react-dom/client';
-import Home from './pages/Home';
 
 const App = () => {
     return (
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route exact path='/asdf' element={<Home />} />
-                    <Route exact path='/' element={<Home />} />
+                    <Route exact path='/' element={<TextApp />} />
                 </Routes>
             </BrowserRouter>
         </>
