@@ -12,5 +12,4 @@ def index():
 def analyze_text():
     text = json.loads(request.data)
     info = run_analysis(text)
-    app.logger.info(info)
     return info

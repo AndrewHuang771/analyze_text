@@ -1,8 +1,9 @@
 import "../../css/main.css"
 
 import AnalysisBoard from "../elements/analysisBoard"
+import ClearButton from "../elements/clearButton";
 import React from 'react'
-import TextEditor from "../elements/editor"
+import SubmitButton from "../elements/submitButton";
 import axios from 'axios';
 
 class TextApp extends React.Component {
@@ -10,7 +11,7 @@ class TextApp extends React.Component {
         super(props);
         this.state = {
             text: "",
-            data: props.data
+            data: props.data,
         }
     }
 
@@ -27,15 +28,27 @@ class TextApp extends React.Component {
     }
 
     onChange = (event) => {
-        this.setState({ text: event[0].children[0].text });
+        this.setState({ text: event.target.value });
+    }
+
+    clear = () => {
+        this.setState({ text: "" });
+    }
+
+    populateEditor = (text) => {
+        this.setState({ text: text });
     }
 
     render() {
         return (
-            <>
-                <TextEditor analyze={this.analyze} onChange={this.onChange}></TextEditor>
-                <AnalysisBoard data={this.state.data}></AnalysisBoard>
-            </>
+            <div className="textApp">
+                <SubmitButton onClick={this.analyze}></SubmitButton>
+                <ClearButton onClick={this.clear}></ClearButton>
+                <div className="text-container">
+                    <textarea id="text-editor" className="text-editor" placeholder="Paste your story here" value={this.state.text} onChange={this.onChange} />
+                </div>
+                <AnalysisBoard data={this.state.data} populateEditor={this.populateEditor}></AnalysisBoard>
+            </div>
         )
     }
 }
